@@ -1,0 +1,30 @@
+.navigation {
+  height: 56px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation * {
+  background-color: #fff !important;
+}
+
+.nav-section {
+  display: flex;
+  margin: 0 2rem;
+}
+
+.nav-section > * {
+  margin-right: 2rem;
+}
+
+.nav-section > *:hover {
+  color: #74e4ff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+}
