@@ -1,14 +1,30 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Home.module.css";
+import { useEffect } from "react";
+import { fetchAllBlogs } from "../../redux/api/BlogApiCall";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const Home = () => {
-  return (
-    <div className={`${styles.card}`}>
-      <div className="max-w-2xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div className="bg-white flex">
+  const dispatch = useAppDispatch();
+  const { blogs } = useAppSelector((state) => state.blog);
+
+  useEffect(() => {
+    getAllBlogs();
+  }, []);
+
+  const getAllBlogs = () => {
+    fetchAllBlogs(dispatch);
+  };
+
+  return blogs.map((blog) => (
+    <div className={`${styles["card-container"]}`} key={blog.id}>
+      <div
+        className={`p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${styles.card}`}
+      >
+        <div className="bg-white flex justify-between">
           <NavLink to="/" className="bg-white">
             <h5 className="bg-white mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
-              Noteworthy technology acquisitions 2021
+              {blog.title}
             </h5>
           </NavLink>
           <span className="ml-6 flex items-center text-gray-700 bg-white text-sm">
@@ -16,8 +32,7 @@ const Home = () => {
           </span>
         </div>
         <p className="bg-white mb-3 font-normal text-gray-700 dark:text-gray-400">
-          Here are the biggest enterprise technology acquisitions of 2021 so
-          far, in reverse chronological order.
+          {blog.content}
         </p>
         <a
           href="#"
@@ -27,7 +42,7 @@ const Home = () => {
         </a>
       </div>
     </div>
-  );
+  ));
 };
 
 export default Home;

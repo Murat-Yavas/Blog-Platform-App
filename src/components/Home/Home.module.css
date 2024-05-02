@@ -1,5 +1,9 @@
-.card {
+.card-container {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+}
+
+.card {
+  min-width: 60%;
 }
