@@ -1,0 +1,19 @@
+.sidebar {
+  margin-top: 2rem;
+  height: 100%;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-item {
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar-item:hover {
+  background-color: #74e4ff;
+  color: #fff;
+  transition: 0.2s;
+}
