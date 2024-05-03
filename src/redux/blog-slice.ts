@@ -6,6 +6,8 @@ interface Blog {
   id: number;
   title: string;
   updateDate: string | Date;
+  authorName: string;
+  topic: string;
 }
 
 interface BlogState {

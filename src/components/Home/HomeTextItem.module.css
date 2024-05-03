@@ -1,0 +1,22 @@
+.avatar {
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: #74e4ff;
+  color: white;
+  padding: 0.25rem;
+}
+
+.article {
+  cursor: pointer;
+}
+
+.article-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topic {
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  background-color: #74e4ff;
+}

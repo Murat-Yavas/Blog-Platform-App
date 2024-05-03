@@ -1,16 +1,22 @@
-import React from "react";
 import styles from "./Sidebar.module.css";
 import { NavLink } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 
 const Sidebar = () => {
   return (
-    <div className={`${styles.sidebar}`}>
-      {SidebarData.map((data) => (
-        <NavLink className={`mb-4 mt-2 ${styles["sidebar-item"]}`} to="/">
-          {data}
-        </NavLink>
-      ))}
+    <div className={`mt-2 ${styles.sidebar}`}>
+      <div className={`${styles["sidebar-container"]}`}>
+        <p className="mt-4 ml-2">TOPICS</p>
+        {SidebarData.map((data, index) => (
+          <NavLink
+            className={`mb-4 ${styles["sidebar-item"]}`}
+            to="/"
+            key={index}
+          >
+            {data.charAt(0).toUpperCase() + data.slice(1)}
+          </NavLink>
+        ))}
+      </div>
     </div>
   );
 };
