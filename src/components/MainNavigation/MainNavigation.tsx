@@ -19,7 +19,7 @@ const MainNavigation = () => {
       </div>
 
       <div className={`${styles["nav-section"]}`}>
-        <NavLink to="/">Login/Signup</NavLink>
+        <NavLink to="/auth">Login/Signup</NavLink>
       </div>
     </div>
   );
