@@ -17,10 +17,6 @@ const Home = () => {
     fetchAllBlogs(dispatch);
   };
 
-  // tüm content'i değil de sadece 100 kelimesini gösteren helper func yaz
-
-  console.log(blogs);
-
   return (
     <div className="flex">
       <div className="flex-none w-64">

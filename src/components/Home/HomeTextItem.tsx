@@ -28,10 +28,10 @@ const HomeTextItem = ({ blog }: TextProps) => {
       <div className={`bg-white mb-4 ${styles.author}`}>
         <span className="bg-white mr-2">
           <NavLink className={`${styles.avatar}`} to="/">
-            {blog.authorName.charAt(0).toUpperCase()}
+            {blog?.authorName?.charAt(0).toUpperCase()}
           </NavLink>
         </span>
-        <span className="bg-white">{blog.authorName}</span>
+        <span className="bg-white">{blog?.authorName}</span>
       </div>
       <div
         className={`bg-white ${styles.article}`}

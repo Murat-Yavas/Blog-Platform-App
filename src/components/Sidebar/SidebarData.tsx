@@ -4,4 +4,5 @@ export const SidebarData: string[] = [
   "gaming",
   "techonology",
   "trip",
+  "engineering",
 ];
