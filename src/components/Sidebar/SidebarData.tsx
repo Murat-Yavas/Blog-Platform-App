@@ -1,4 +1,5 @@
 export const SidebarData: string[] = [
+  "all",
   "science",
   "nature",
   "gaming",

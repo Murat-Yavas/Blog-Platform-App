@@ -1,16 +1,25 @@
-import styles from "./Sidebar.module.css";
 import { NavLink } from "react-router-dom";
+import { fetchBlogsByTopic } from "../../redux/api/BlogApiCall";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import styles from "./Sidebar.module.css";
 import { SidebarData } from "./SidebarData";
 
 const Sidebar = () => {
+  const dispatch = useAppDispatch();
+
+  const handleTopic = (topic: string) => {
+    fetchBlogsByTopic(dispatch, topic);
+  };
+
   return (
-    <div className={`mt-2 ${styles.sidebar}`}>
-      <div className={`${styles["sidebar-container"]}`}>
-        <p className="mt-4 ml-2">TOPICS</p>
+    <div className={`bg-white mt-0 ${styles.sidebar}`}>
+      <div className={`bg-white ${styles["sidebar-container"]}`}>
+        <p className="bg-white mt-4 ml-2">TOPICS</p>
         {SidebarData.map((data, index) => (
           <NavLink
-            className={`mb-4 ${styles["sidebar-item"]}`}
-            to="/"
+            to={`/topic/${data}`}
+            onClick={() => handleTopic(data)}
+            className={`bg-white mb-4 ${styles["sidebar-item"]}`}
             key={index}
           >
             {data.charAt(0).toUpperCase() + data.slice(1)}

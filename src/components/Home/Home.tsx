@@ -23,9 +23,7 @@ const Home = () => {
         <Sidebar />
       </div>
       <div className={`flex-1 w-32 ${styles["card-container"]}`}>
-        {blogs.map((blog) => (
-          <HomeTextItem blog={blog} key={blog.id} />
-        ))}
+        <HomeTextItem blogs={blogs} />
       </div>
     </div>
   );
