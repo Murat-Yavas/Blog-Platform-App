@@ -6,7 +6,7 @@ import { useState } from "react";
 interface TextProps {
   blog: {
     id: number;
-    authorName: string;
+    username: string;
     title: string;
     createDate: Date;
     content: string;
@@ -23,18 +23,18 @@ const HomeTextItem = ({ blog }: TextProps) => {
 
   return (
     <div
-      className={`p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${styles.card}`}
+      className={`p-6 mb-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${styles.card}`}
     >
       <div className={`bg-white mb-4 ${styles.author}`}>
         <span className="bg-white mr-2">
           <NavLink className={`${styles.avatar}`} to="/">
-            {blog?.authorName?.charAt(0).toUpperCase()}
+            {blog?.username?.charAt(0).toUpperCase()}
           </NavLink>
         </span>
-        <span className="bg-white">{blog?.authorName}</span>
+        <span className="bg-white">{blog?.username}</span>
       </div>
       <div
-        className={`bg-white ${styles.article}`}
+        className={`bg-white ${styles?.article}`}
         onClick={() => handleOpen()}
       >
         <div className={`bg-white ${styles["article-info"]}`}>
@@ -43,14 +43,16 @@ const HomeTextItem = ({ blog }: TextProps) => {
           </h5>
 
           <span className="ml-6 flex items-center text-gray-700 bg-white text-sm">
-            Published: {blog.createDate.toString().split("T")[0]}
+            Published: {blog?.createDate.toString().split("T")[0]}
           </span>
         </div>
         <div className="bg-white text-gray-500 mb-4">
-          <span className={`${styles.topic}`}>{blog.topic}</span>
+          <span className={`${styles.topic}`}>
+            {blog?.topic?.charAt(0).toUpperCase() + blog?.topic?.slice(1)}
+          </span>
         </div>
         <p className="bg-white mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {isOpen ? blog.content : textTruncate(blog.content, 100)}
+          {isOpen ? blog?.content : textTruncate(blog?.content, 100)}
         </p>
       </div>
     </div>

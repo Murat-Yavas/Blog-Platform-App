@@ -6,7 +6,7 @@ interface Blog {
   id: number;
   title: string;
   updateDate: string | Date;
-  authorName?: string;
+  username: string;
   topic: string;
 }
 

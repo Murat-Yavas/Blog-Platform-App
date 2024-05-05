@@ -11,7 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     getAllBlogs();
-  }, []);
+  }, [blogs.length]);
 
   const getAllBlogs = () => {
     fetchAllBlogs(dispatch);
