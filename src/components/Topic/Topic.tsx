@@ -2,13 +2,21 @@ import { useAppSelector } from "../../redux/hooks";
 import HomeTextItem from "../Home/HomeTextItem";
 import styles from "../Home/Home.module.css";
 import Sidebar from "../Sidebar/Sidebar";
+import { useParams } from "react-router-dom";
 
 const Topic = () => {
-  const { blogs, blogsByTopic } = useAppSelector((state) => state.blog);
+  const { blogs } = useAppSelector((state) => state.blog);
   let blogPosts = [];
 
-  if (blogsByTopic.length === 0) blogPosts = blogs;
-  else blogPosts = blogsByTopic;
+  const param = useParams();
+
+  blogPosts = blogs.filter((blog) =>
+    blog.topic === param.topicName
+      ? blog
+      : param.topicName === "all"
+      ? blogs
+      : null
+  );
 
   return (
     <div className="flex">

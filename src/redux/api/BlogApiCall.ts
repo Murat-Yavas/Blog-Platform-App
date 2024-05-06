@@ -21,9 +21,3 @@ export const createOneBlog = async (
   const result = await response.json();
   dispatch(blogActions.addOneBlog(result));
 };
-
-export const fetchBlogsByTopic = async (dispatch: any, topic: string) => {
-  const response = await fetch(`http://localhost:8080/blogs/topic/${topic}`);
-  const result = await response.json();
-  dispatch(blogActions.getBlogsByTopic(result));
-};

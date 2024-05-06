@@ -13,13 +13,11 @@ interface Blog {
 interface BlogState {
   blogs: Blog[];
   isModalOpen: boolean;
-  blogsByTopic: Blog[];
 }
 
 const initialState: BlogState = {
   blogs: [],
   isModalOpen: false,
-  blogsByTopic: [],
 };
 
 const blogSlice = createSlice({
@@ -36,10 +34,6 @@ const blogSlice = createSlice({
 
     addOneBlog: (state, action: PayloadAction<Blog>) => {
       state.blogs.push(action.payload);
-    },
-
-    getBlogsByTopic: (state, action: PayloadAction<Blog[]>) => {
-      state.blogsByTopic = action.payload;
     },
   },
 });
