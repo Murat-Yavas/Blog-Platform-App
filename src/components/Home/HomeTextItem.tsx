@@ -28,6 +28,10 @@ const HomeTextItem = ({ blogs }: TextProps) => {
     dispatch(blogActions.toggleBlogCreateModal(true));
   };
 
+  const reversedBlogsArray = blogs.map(
+    (blog, index) => blogs[blogs.length - 1 - index]
+  );
+
   return (
     <div>
       {blogs.length === 0 ? (
@@ -41,7 +45,7 @@ const HomeTextItem = ({ blogs }: TextProps) => {
           </span>
         </h1>
       ) : (
-        blogs.map((blog) => (
+        reversedBlogsArray.map((blog) => (
           <div
             key={blog.id}
             className={`p-6 mb-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ${styles.card}`}

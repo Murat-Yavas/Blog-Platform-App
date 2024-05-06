@@ -2,12 +2,14 @@ import { useAppDispatch } from "../../redux/hooks";
 import { blogActions } from "../../redux/blog-slice";
 import { useEffect, useRef, useState } from "react";
 import { createOneBlog } from "../../redux/api/BlogApiCall";
+import { useNavigate } from "react-router-dom";
 
 const CreateModalBlog = () => {
   const dispatch = useAppDispatch();
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
+  const navigate = useNavigate();
 
   const modalRef = useRef<any>(null);
 
@@ -33,6 +35,7 @@ const CreateModalBlog = () => {
     const body = { title, topic, content, userId: 3 };
     createOneBlog(dispatch, body);
     dispatch(blogActions.toggleBlogCreateModal(false));
+    navigate("/");
   };
 
   return (
