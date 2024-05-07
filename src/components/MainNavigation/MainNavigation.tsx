@@ -15,7 +15,7 @@ const MainNavigation = () => {
   return (
     <div className={`${styles.navigation}`}>
       <div className={`${styles["nav-section"]}`}>
-        <p className="mr-8 text-xl text-blue-300">Arcticle</p>
+        <p className="mr-8 text-xl text-custom-blue">Arcticle</p>
 
         <NavLink to="/" className={`${styles["nav-icon"]}`}>
           <FaHome />

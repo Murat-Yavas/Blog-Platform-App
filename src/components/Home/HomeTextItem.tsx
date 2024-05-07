@@ -71,8 +71,8 @@ const HomeTextItem = ({ blogs }: TextProps) => {
                   Published: {blog?.createDate.toString().split("T")[0]}
                 </span>
               </div>
-              <div className="bg-white text-gray-500 mb-4">
-                <span className={`${styles.topic}`}>
+              <div className="bg-white text-gray-500 mb-4 ">
+                <span className={`bg-custom-blue ${styles.topic}`}>
                   {blog?.topic?.charAt(0).toUpperCase() + blog?.topic?.slice(1)}
                 </span>
               </div>

@@ -1,0 +1,11 @@
+.add-blog-item {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  border: 1px solid #74e4ff;
+  border-radius: 10px;
+}
+
+.add-blog-button {
+  display: flex;
+  justify-content: end;
+}

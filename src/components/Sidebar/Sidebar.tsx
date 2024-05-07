@@ -7,7 +7,7 @@ const Sidebar = () => {
   return (
     <div className={`bg-white mt-0 ${styles.sidebar}`}>
       <div className={`bg-white ${styles["sidebar-container"]}`}>
-        <p className="bg-white mt-4 ml-2">TOPICS</p>
+        <p className="bg-white mt-4 ml-6">TOPICS</p>
         {SidebarData.map((data, index) => (
           <NavLink
             to={`/topic/${data}`}

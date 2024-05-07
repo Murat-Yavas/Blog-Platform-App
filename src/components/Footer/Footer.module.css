@@ -1,0 +1,17 @@
+.footer-links {
+  width: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-left: 1rem;
+  position: fixed;
+}
+
+.link {
+  margin: 1rem 5px;
+}
+
+.link:hover {
+  color: #74e4ff;
+  transition: 0.2s;
+}
