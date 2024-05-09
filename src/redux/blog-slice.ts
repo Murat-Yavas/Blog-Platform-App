@@ -1,5 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+export interface blogComments {
+  blogId: number;
+  commentText: string;
+  createDate: Date;
+  id: number;
+  userId: number;
+  username: string;
+}
+
 interface Blog {
   content: string;
   createDate: Date;
@@ -8,6 +17,7 @@ interface Blog {
   updateDate: string | Date;
   username: string;
   topic: string;
+  comment: blogComments[];
 }
 
 interface BlogState {
@@ -35,6 +45,8 @@ const blogSlice = createSlice({
     addOneBlog: (state, action: PayloadAction<Blog>) => {
       state.blogs.push(action.payload);
     },
+
+    addComment: (state, action: PayloadAction<string>) => {},
   },
 });
 
