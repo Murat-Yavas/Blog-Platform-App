@@ -1,4 +1,3 @@
-import { blogActions } from "../blog-slice";
 import { commentActions } from "../comment-slice";
 
 export const fetchCommentsByBlog = async (dispatch: any, id: number) => {
@@ -19,7 +18,7 @@ export const createOneComment = async (
     body: JSON.stringify(body),
   });
   const result = await response.json();
-  console.log(result);
-  console.log(body);
-  // dispatch(blogActions.addComment());
+  // console.log(result);
+  // console.log(body);
+  dispatch(commentActions.addOneComment(result));
 };

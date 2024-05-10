@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createOneComment } from "../../../redux/api/CommentApiCall";
 import { useAppDispatch } from "../../../redux/hooks";
-import { blogComments } from "../../../redux/blog-slice";
 
 interface CommentInputProps {
   blogId: number;
@@ -16,7 +15,6 @@ const CommentInput = ({ blogId, userId }: CommentInputProps) => {
     const body = { commentText, blogId, userId };
     createOneComment(dispatch, body);
     setCommentText("");
-    // blog.comment.push(body)
   };
 
   return (

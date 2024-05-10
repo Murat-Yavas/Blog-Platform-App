@@ -4,6 +4,7 @@ import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
 import AuthPage from "./pages/AuthPage";
 import TopicPage from "./pages/TopicPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +15,7 @@ function App() {
         { index: true, element: <HomePage /> },
         { path: "/auth", element: <AuthPage /> },
         { path: "/topic/:topicName", element: <TopicPage /> },
+        { path: "/users/:userId", element: <UserProfilePage /> },
       ],
     },
   ]);

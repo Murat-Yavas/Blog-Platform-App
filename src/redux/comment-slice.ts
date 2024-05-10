@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Comment {
+export interface Comment {
   id: number;
-  username: string;
   userId: number;
   commentText: string;
   createDate: Date;
+  username: string;
+  blogId: number;
 }
 
 interface CommentState {
@@ -20,6 +21,10 @@ const commentSlice = createSlice({
   reducers: {
     getCommentsByBlog: (state, action: PayloadAction<Comment[]>) => {
       state.comments = action.payload;
+    },
+
+    addOneComment: (state, action: PayloadAction<Comment>) => {
+      state.comments.push(action.payload);
     },
   },
 });

@@ -1,28 +1,10 @@
-import { NavLink } from "react-router-dom";
-import { textTruncate } from "../../helpers/textTruncate";
-import styles from "./HomeTextItem.module.css";
-import { useState } from "react";
-import { useAppDispatch } from "../../redux/hooks";
-import { blogActions, blogComments } from "../../redux/blog-slice";
-import { FaComment } from "react-icons/fa";
-import { fetchCommentsByBlog } from "../../redux/api/CommentApiCall";
-import Comment from "../Comment/Comment";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { blogActions } from "../../redux/blog-slice";
 import BlogItem from "../UI/BlogItem/BlogItem";
 
-interface TextProps {
-  blogs: {
-    id: number;
-    username: string;
-    title: string;
-    createDate: Date;
-    content: string;
-    topic: string;
-    comment: blogComments[];
-  }[];
-}
-
-const HomeTextItem = ({ blogs }: TextProps) => {
+const HomeTextItem = () => {
   const dispatch = useAppDispatch();
+  const { blogs } = useAppSelector((state) => state.blog);
 
   const handleOpenModal = () => {
     dispatch(blogActions.toggleBlogCreateModal(true));

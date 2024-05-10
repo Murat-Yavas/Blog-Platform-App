@@ -1,32 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Comment } from "./comment-slice";
 
-export interface blogComments {
-  blogId: number;
-  commentText: string;
-  createDate: Date;
-  id: number;
-  userId: number;
-  username: string;
-}
-
-interface Blog {
+export interface Blog {
   content: string;
   createDate: Date;
   id: number;
   title: string;
-  updateDate: string | Date;
   username: string;
   topic: string;
-  comment: blogComments[];
+  userId: number;
+  comment: Comment[];
 }
+
+// interface NewComment {
+//   commentText: string;
+//   blogId: number;
+//   userId: number;
+// }
 
 interface BlogState {
   blogs: Blog[];
+  userBlogs: Blog[];
+  // newBlogComment: NewComment | null;
   isModalOpen: boolean;
 }
 
 const initialState: BlogState = {
   blogs: [],
+  userBlogs: [],
+  // newBlogComment: null,
   isModalOpen: false,
 };
 
@@ -38,6 +40,10 @@ const blogSlice = createSlice({
       state.blogs = action.payload;
     },
 
+    getBlogsByUser: (state, action: PayloadAction<Blog[]>) => {
+      state.userBlogs = action.payload;
+    },
+
     toggleBlogCreateModal: (state, action: PayloadAction<boolean>) => {
       state.isModalOpen = action.payload;
     },
@@ -46,7 +52,9 @@ const blogSlice = createSlice({
       state.blogs.push(action.payload);
     },
 
-    addComment: (state, action: PayloadAction<string>) => {},
+    // addComment: (state, action: PayloadAction<NewComment>) => {
+    //   state.newBlogComment = action.payload;
+    // },
   },
 });
 

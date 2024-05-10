@@ -1,4 +1,4 @@
-import { blogComments } from "../../../redux/blog-slice";
+import { Blog } from "../../../redux/blog-slice";
 import styles from "./BlogItem.module.css";
 import { FaComment } from "react-icons/fa";
 import { useState } from "react";
@@ -8,23 +8,15 @@ import CommentItem from "../CommentItem/CommentItem";
 import CommentInput from "../CommentInput/CommentInput";
 
 interface BlogProps {
-  blog: {
-    id: number;
-    username: string;
-    title: string;
-    createDate: Date;
-    content: string;
-    topic: string;
-    comment: blogComments[] | [];
-  };
+  blog: Blog;
 }
 
 const BlogItem = ({ blog }: BlogProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isContentOpen, setIsContentOpen] = useState(false);
   const [isCommentOpen, setIsCommentOpen] = useState(false);
 
   const handleOpen = () => {
-    setIsOpen(!isOpen);
+    setIsContentOpen(!isContentOpen);
   };
 
   return (
@@ -34,7 +26,7 @@ const BlogItem = ({ blog }: BlogProps) => {
     >
       <div className={`bg-white mb-4 ${styles.author}`}>
         <span className="bg-white mr-2">
-          <NavLink className={`${styles.avatar}`} to="/">
+          <NavLink className={`${styles.avatar}`} to={`/users/${blog.userId}`}>
             {blog?.username?.charAt(0).toUpperCase()}
           </NavLink>
         </span>
@@ -59,7 +51,7 @@ const BlogItem = ({ blog }: BlogProps) => {
           </span>
         </div>
         <p className="bg-white mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {isOpen ? blog?.content : textTruncate(blog?.content, 100)}
+          {isContentOpen ? blog?.content : textTruncate(blog?.content, 100)}
         </p>
       </div>
       <div className={`bg-white ${styles.comment}`}>
@@ -72,16 +64,18 @@ const BlogItem = ({ blog }: BlogProps) => {
       {isCommentOpen ? (
         <>
           <CommentInput blogId={blog.id} userId={4} />
-          <div className="bg-white">
-            {blog.comment.map((com) => (
+          {/* <div className="bg-white">
+            {blog?.comment.map((com) => (
               <CommentItem
                 key={com.id}
-                text={com.commentText}
-                username={com.username}
+                text={com?.commentText}
+                username={com?.username}
                 createDate={com.createDate}
+                blogId={com.blogId}
               />
             ))}
-          </div>
+          </div> */}
+          <CommentItem blogId={blog.id} />
         </>
       ) : (
         ""

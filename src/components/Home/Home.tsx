@@ -28,7 +28,7 @@ const Home = () => {
       <div className={`flex-1 w-32 ${styles["card-container"]}`}>
         <AddBlogItem />
 
-        <HomeTextItem blogs={blogs} />
+        <HomeTextItem />
       </div>
     </div>
   );
