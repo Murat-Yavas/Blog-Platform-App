@@ -1,9 +1,23 @@
+.top-section {
+  display: flex;
+  justify-content: space-between;
+}
+
 .avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 50px;
   border: 1px solid white;
   border-radius: 50%;
   background-color: #74e4ff;
   color: white;
   padding: 0.25rem;
+}
+
+.delete-icon {
+  cursor: pointer;
 }
 
 .article {

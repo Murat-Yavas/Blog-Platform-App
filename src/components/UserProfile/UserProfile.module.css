@@ -6,16 +6,39 @@
 
 .user-credentials {
   padding: 2rem;
-  border: 1px solid black;
+  border: 1px solid #74e4ff;
+  border-radius: 1rem;
 }
 
 .avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
   font-size: 6rem;
-  border-radius: 80%;
   padding: 1rem;
-  /* background-color: ; */
 }
 
 .username {
+  font-size: 2rem;
+}
+
+.show-blog-btn {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
+.show-blog-btn button:hover {
+  color: #74e4ff;
+  transition: 0.2s;
+}
+
+.profile-message {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
   font-size: 2rem;
 }

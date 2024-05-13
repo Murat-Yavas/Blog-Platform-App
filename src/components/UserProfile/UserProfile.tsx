@@ -11,6 +11,7 @@ const UserProfile = () => {
   const { user } = useAppSelector((state) => state.user);
   const { userBlogs } = useAppSelector((state) => state.blog);
   const dispatch = useAppDispatch();
+  const param = useParams();
 
   useEffect(() => {
     fetchOneUser(dispatch, parseInt(param.userId!));
@@ -18,21 +19,22 @@ const UserProfile = () => {
 
   useEffect(() => {
     fetchAllBlogsByUser(dispatch, parseInt(param.userId!));
-  }, []);
+  }, [dispatch]);
 
   const handleUserBlogs = () => {
-    setIsOpenUserBlogs(true);
+    setIsOpenUserBlogs(!isOpenUserBlogs);
   };
 
-  const param = useParams();
-  return (
+  return localStorage.getItem("currentUser") !== null ? (
     <div className={`${styles.user}`}>
       <div className={`mb-4 ${styles["user-credentials"]}`}>
-        <div>
+        <div className="flex">
           <span className={`bg-custom-blue mr-2 ${styles.avatar}`}>
             {user?.username?.charAt(0).toUpperCase()}
           </span>
-          <span className={`${styles.username}`}>{user?.username}</span>
+          <span className={`flex items-center ml-4 ${styles.username}`}>
+            {user?.username}
+          </span>
         </div>
         <div className={`mt-4 ${styles["user-action"]}`}>
           <p>Blogs: {user.blog.length}</p>
@@ -40,7 +42,11 @@ const UserProfile = () => {
         </div>
       </div>
 
-      <button onClick={() => handleUserBlogs()}>See blogs</button>
+      <div className={`${styles["show-blog-btn"]}`}>
+        <button onClick={() => handleUserBlogs()}>
+          {!isOpenUserBlogs ? "Show " : "Hide "} Blogs
+        </button>
+      </div>
       {isOpenUserBlogs ? (
         <div className={`mb-4 ${styles["user-blogs"]}`}>
           {userBlogs.map((blog) => (
@@ -49,6 +55,10 @@ const UserProfile = () => {
         </div>
       ) : null}
     </div>
+  ) : (
+    <p className={`${styles["profile-message"]}`}>
+      Login/Signup to view the profile
+    </p>
   );
 };
 

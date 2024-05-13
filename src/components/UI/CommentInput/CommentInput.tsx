@@ -5,14 +5,15 @@ import { useAppDispatch } from "../../../redux/hooks";
 interface CommentInputProps {
   blogId: number;
   userId: number;
+  username: string;
 }
 
-const CommentInput = ({ blogId, userId }: CommentInputProps) => {
+const CommentInput = ({ blogId, userId, username }: CommentInputProps) => {
   const [commentText, setCommentText] = useState("");
   const dispatch = useAppDispatch();
 
   const handleAddComment = () => {
-    const body = { commentText, blogId, userId };
+    const body = { commentText, blogId, userId, username };
     createOneComment(dispatch, body);
     setCommentText("");
   };
@@ -33,6 +34,11 @@ const CommentInput = ({ blogId, userId }: CommentInputProps) => {
         <button
           onClick={() => handleAddComment()}
           className="ml-2 bg-custom-blue hover:bg-blue-300 duration-200 text-white font-bold py-2 px-4 rounded-full"
+          disabled={localStorage.getItem("currentUser") !== null ? false : true}
+          style={{
+            cursor:
+              localStorage.getItem("currentUser") !== null ? "" : "not-allowed",
+          }}
         >
           Add comment
         </button>

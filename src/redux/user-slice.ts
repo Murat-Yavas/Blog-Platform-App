@@ -10,8 +10,15 @@ interface User {
   comment: Comment[];
 }
 
+interface UserInfo {
+  accessToken: string | null;
+  message: string | null;
+  username: string | null;
+}
+
 interface UserState {
   user: User;
+  userCredentials: UserInfo;
 }
 
 const initialState: UserState = {
@@ -22,6 +29,12 @@ const initialState: UserState = {
     blog: [],
     comment: [],
   },
+
+  userCredentials: {
+    accessToken: null,
+    message: null,
+    username: null,
+  },
 };
 
 const userSlice = createSlice({
@@ -30,6 +43,10 @@ const userSlice = createSlice({
   reducers: {
     getUserById: (state, action: PayloadAction<User>) => {
       state.user = action.payload;
+    },
+
+    saveUser: (state, action: PayloadAction<UserInfo>) => {
+      state.userCredentials = action.payload;
     },
   },
 });

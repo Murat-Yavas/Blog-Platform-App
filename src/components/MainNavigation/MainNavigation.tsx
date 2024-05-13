@@ -12,6 +12,13 @@ const MainNavigation = () => {
     dispatch(blogActions.toggleBlogCreateModal(true));
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("tokenKey");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("username");
+    window.location.reload();
+  };
+
   return (
     <div className={`${styles.navigation}`}>
       <div className={`${styles["nav-section"]}`}>
@@ -27,7 +34,18 @@ const MainNavigation = () => {
       </div>
 
       <div className={`${styles["nav-section"]}`}>
-        <NavLink to="/auth">Login/Signup</NavLink>
+        {localStorage.getItem("currentUser") === null ? (
+          <NavLink to="/auth">Login/Signup</NavLink>
+        ) : (
+          <>
+            <p className="mr-4" onClick={() => handleLogout()}>
+              Logout
+            </p>
+            <NavLink to={`/users/${localStorage.getItem("currentUser")}`}>
+              Profile
+            </NavLink>
+          </>
+        )}
       </div>
     </div>
   );

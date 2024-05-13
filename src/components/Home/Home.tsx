@@ -10,6 +10,8 @@ import AddBlogItem from "../AddBlogItem/AddBlogItem";
 const Home = () => {
   const dispatch = useAppDispatch();
   const { blogs } = useAppSelector((state) => state.blog);
+  const { userCredentials } = useAppSelector((state) => state.user);
+  // console.log(blogs);
 
   useEffect(() => {
     getAllBlogs();

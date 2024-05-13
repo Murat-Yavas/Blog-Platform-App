@@ -12,23 +12,15 @@ export interface Blog {
   comment: Comment[];
 }
 
-// interface NewComment {
-//   commentText: string;
-//   blogId: number;
-//   userId: number;
-// }
-
 interface BlogState {
   blogs: Blog[];
   userBlogs: Blog[];
-  // newBlogComment: NewComment | null;
   isModalOpen: boolean;
 }
 
 const initialState: BlogState = {
   blogs: [],
   userBlogs: [],
-  // newBlogComment: null,
   isModalOpen: false,
 };
 
@@ -52,9 +44,10 @@ const blogSlice = createSlice({
       state.blogs.push(action.payload);
     },
 
-    // addComment: (state, action: PayloadAction<NewComment>) => {
-    //   state.newBlogComment = action.payload;
-    // },
+    removeOneBlog: (state, action: PayloadAction<number>) => {
+      const newBlogs = state.blogs.filter((blog) => blog.id !== action.payload);
+      state.blogs = newBlogs;
+    },
   },
 });
 
