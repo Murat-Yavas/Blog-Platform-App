@@ -10,8 +10,6 @@ import AddBlogItem from "../AddBlogItem/AddBlogItem";
 const Home = () => {
   const dispatch = useAppDispatch();
   const { blogs } = useAppSelector((state) => state.blog);
-  const { userCredentials } = useAppSelector((state) => state.user);
-  // console.log(blogs);
 
   useEffect(() => {
     getAllBlogs();
@@ -29,7 +27,6 @@ const Home = () => {
       </div>
       <div className={`flex-1 w-32 ${styles["card-container"]}`}>
         <AddBlogItem />
-
         <HomeTextItem />
       </div>
     </div>

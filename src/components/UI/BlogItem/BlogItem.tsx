@@ -36,7 +36,7 @@ const BlogItem = ({ blog }: BlogProps) => {
         <div className={`bg-white flex mb-4 ${styles.author}`}>
           <span className="bg-white mr-2">
             <NavLink
-              className={`text-xl ${styles.avatar}`}
+              className={`text-xl ${styles.avatar} avatar-round`}
               to={`/users/${blog.userId}`}
             >
               {blog?.username?.charAt(0).toUpperCase()}

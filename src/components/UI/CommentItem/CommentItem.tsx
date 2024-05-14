@@ -32,7 +32,10 @@ const CommentItem = ({ blogId, userId }: CommentProps) => {
           <div className={`bg-white ${styles["comment-top-section"]}`}>
             <div className={`bg-white flex mb-4 ${styles["user-info"]}`}>
               <span className="bg-white mr-2">
-                <NavLink className={`${styles.avatar}`} to={`/users/${userId}`}>
+                <NavLink
+                  className={`${styles.avatar} avatar-round`}
+                  to={`/users/${userId}`}
+                >
                   {comment?.username?.charAt(0).toUpperCase()}
                 </NavLink>
               </span>

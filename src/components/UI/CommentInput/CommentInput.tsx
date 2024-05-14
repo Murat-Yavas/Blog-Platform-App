@@ -33,7 +33,7 @@ const CommentInput = ({ blogId, userId, username }: CommentInputProps) => {
       <div className="bg-white ">
         <button
           onClick={() => handleAddComment()}
-          className="ml-2 bg-custom-blue hover:bg-blue-300 duration-200 text-white font-bold py-2 px-4 rounded-full"
+          className="ml-2 bg-custom-blue hover:text-black duration-200 text-white font-bold py-2 px-4 rounded-full"
           disabled={localStorage.getItem("currentUser") !== null ? false : true}
           style={{
             cursor:

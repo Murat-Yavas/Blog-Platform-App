@@ -1,11 +1,11 @@
 import { useAppSelector } from "../../redux/hooks";
-import HomeTextItem from "../Home/HomeTextItem";
 import styles from "../Home/Home.module.css";
 import Sidebar from "../Sidebar/Sidebar";
 import { useParams } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import AddBlogItem from "../AddBlogItem/AddBlogItem";
 import BlogItem from "../UI/BlogItem/BlogItem";
+import { reverseArray } from "../../helpers/reverseArray";
 
 const Topic = () => {
   const { blogs } = useAppSelector((state) => state.blog);
@@ -21,9 +21,7 @@ const Topic = () => {
       : null
   );
 
-  const reversedBlogsArray = blogPosts.map(
-    (blog, index) => blogPosts[blogPosts.length - 1 - index]
-  );
+  const newArray = reverseArray(blogPosts);
 
   return (
     <div className="flex">
@@ -33,7 +31,7 @@ const Topic = () => {
       </div>
       <div className={`flex-1 w-32 ${styles["card-container"]}`}>
         <AddBlogItem />
-        {reversedBlogsArray.map((blog) => (
+        {newArray.map((blog) => (
           <BlogItem key={blog.id} blog={blog} />
         ))}
       </div>

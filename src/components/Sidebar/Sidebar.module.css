@@ -10,9 +10,25 @@
   flex-direction: column;
 }
 
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0 1rem 2rem;
+}
+
+.sidebar-title-icon {
+  font-size: 2rem;
+  background-color: #74e4ff;
+  border-radius: 6px;
+  color: white;
+  margin-right: 5px;
+}
+
 .sidebar-item {
+  display: flex;
+  align-items: center;
   width: 100%;
-  text-align: center;
+  padding-left: 2rem;
 }
 
 .sidebar-item:hover {

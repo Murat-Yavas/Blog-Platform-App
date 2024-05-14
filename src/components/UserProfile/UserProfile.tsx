@@ -29,7 +29,7 @@ const UserProfile = () => {
     <div className={`${styles.user}`}>
       <div className={`mb-4 ${styles["user-credentials"]}`}>
         <div className="flex">
-          <span className={`bg-custom-blue mr-2 ${styles.avatar}`}>
+          <span className={`mr-2 ${styles.avatar} avatar-round`}>
             {user?.username?.charAt(0).toUpperCase()}
           </span>
           <span className={`flex items-center ml-4 ${styles.username}`}>
