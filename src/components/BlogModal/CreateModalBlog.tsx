@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const CreateModalBlog = () => {
   const dispatch = useAppDispatch();
+  const [showInputMessage, setShowInputMessage] = useState("");
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
@@ -32,10 +33,28 @@ const CreateModalBlog = () => {
   }
 
   const handlePost = () => {
-    const body = { title, topic, content, userId: 3 };
-    createOneBlog(dispatch, body);
-    dispatch(blogActions.toggleBlogCreateModal(false));
-    navigate("/");
+    if (
+      title === "" ||
+      topic === "Select category" ||
+      topic === "" ||
+      content === ""
+    ) {
+      setShowInputMessage("Inputs cannot be left blank");
+    } else {
+      setShowInputMessage("");
+      const body = {
+        title,
+        topic,
+        content,
+        userId: +localStorage.getItem("currentUser")!,
+        comment: null,
+        username: localStorage.getItem("username")!,
+        createDate: new Date().toISOString().slice(0, 10),
+      };
+      createOneBlog(dispatch, body);
+      dispatch(blogActions.toggleBlogCreateModal(false));
+      navigate("/");
+    }
   };
 
   return (
@@ -119,6 +138,7 @@ const CreateModalBlog = () => {
                     ></textarea>
                   </div>
                 </div>
+                <p className="text-red-600">{showInputMessage}</p>
               </form>
               <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
                 <button

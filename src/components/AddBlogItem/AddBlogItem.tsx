@@ -4,30 +4,47 @@ import styles from "./AddBlogItem.module.css";
 import { createOneBlog } from "../../redux/api/BlogApiCall";
 
 const AddBlogItem = () => {
+  const [showInputMessage, setShowInputMessage] = useState("");
   const dispatch = useAppDispatch();
   const [title, setTitle] = useState("");
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
 
+  console.log(typeof topic);
+
   const handleAddBlog = () => {
-    const body = {
-      title,
-      topic,
-      content,
-      userId: +localStorage.getItem("currentUser")!,
-      comment: null,
-      username: localStorage.getItem("username")!,
-      createDate: new Date().toISOString().slice(0, 10),
-    };
-    createOneBlog(dispatch, body);
-    setTitle("");
-    setTopic("");
-    setContent("");
+    if (
+      title === "" ||
+      topic === "Select category" ||
+      topic === "" ||
+      content === ""
+    ) {
+      setShowInputMessage("Inputs cannot be left blank");
+    } else {
+      setShowInputMessage("");
+      const body = {
+        title,
+        topic,
+        content,
+        userId: +localStorage.getItem("currentUser")!,
+        comment: null,
+        username: localStorage.getItem("username")!,
+        createDate: new Date().toISOString().slice(0, 10),
+      };
+      createOneBlog(dispatch, body);
+      setTitle("");
+      setTopic("");
+      setContent("");
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
   };
 
   return (
     <div>
-      <form className={`${styles["add-blog-item"]}`}>
+      <form onSubmit={handleSubmit} className={`${styles["add-blog-item"]}`}>
         <div className="grid gap-6 mb-6 md:grid-cols-3">
           <div>
             <label
@@ -87,7 +104,10 @@ const AddBlogItem = () => {
           ></textarea>
         </div>
 
-        <div className={`${styles["add-blog-button"]}`}>
+        <div
+          className={`flex justify-between items-center ${styles["add-blog-button"]}`}
+        >
+          <div className="text-red-600">{showInputMessage}</div>
           <button
             className="text-white inline-flex items-center mt-2 bg-custom-blue hover:text-black duration-200 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button"
