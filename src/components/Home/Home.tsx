@@ -9,19 +9,17 @@ import AddBlogItem from "../AddBlogItem/AddBlogItem";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { blogs } = useAppSelector((state) => state.blog);
+  // const { blogs, searchTerm } = useAppSelector((state) => state.blog);
 
   useEffect(() => {
-    getAllBlogs();
-  }, [blogs.length]);
-
-  const getAllBlogs = () => {
     fetchAllBlogs(dispatch);
-  };
+  }, []);
+
+  // console.log(blogs);
 
   return (
-    <div className="flex">
-      <div className="flex-none w-64 mr-4">
+    <div className={`${styles.home}`}>
+      <div className={`flex-none w-64 mr-4 ${styles["right-content"]}`}>
         <Sidebar />
         <Footer />
       </div>

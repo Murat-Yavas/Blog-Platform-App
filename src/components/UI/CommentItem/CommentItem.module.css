@@ -25,3 +25,14 @@
   border-bottom: 1px solid #f1f2f2;
   margin-bottom: 1rem;
 }
+
+@media screen and (max-width: 540px) {
+  .user-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comment-date {
+    margin: 0;
+  }
+}

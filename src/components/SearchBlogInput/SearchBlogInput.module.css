@@ -1,0 +1,10 @@
+.search-icon {
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.search-icon:hover {
+  cursor: pointer;
+  color: #74e4ff;
+  transition: 0.2s;
+}

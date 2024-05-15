@@ -6,11 +6,11 @@ import { useAppSelector } from "../redux/hooks";
 const Root = () => {
   const { isModalOpen } = useAppSelector((state) => state.blog);
   return (
-    <div>
+    <>
       <MainNavigation />
       {isModalOpen ? <CreateModalBlog /> : null}
       <Outlet />
-    </div>
+    </>
   );
 };
 

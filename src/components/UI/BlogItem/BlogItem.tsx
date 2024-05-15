@@ -64,7 +64,7 @@ const BlogItem = ({ blog }: BlogProps) => {
           </h5>
 
           <span className="ml-6 flex items-center text-gray-700 bg-white text-sm">
-            Published: {blog?.createDate.toString().split("T")[0]}
+            {blog?.createDate.toString().split("T")[0]}
           </span>
         </div>
         <div className="bg-white text-gray-500 mb-4 ">
@@ -87,8 +87,8 @@ const BlogItem = ({ blog }: BlogProps) => {
         <>
           <CommentInput
             blogId={blog.id}
-            userId={blog.userId}
-            username={blog.username}
+            userId={+localStorage.getItem("currentUser")!}
+            username={localStorage.getItem("username")!}
           />
 
           <CommentItem key={blog.title} blogId={blog.id} userId={blog.userId} />

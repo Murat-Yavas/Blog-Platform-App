@@ -1,3 +1,7 @@
+.card {
+  max-width: 592px;
+}
+
 .top-section {
   display: flex;
   justify-content: space-between;

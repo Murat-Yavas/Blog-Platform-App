@@ -35,3 +35,47 @@
 .account-action {
   display: flex;
 }
+
+.menu {
+  display: none;
+  position: absolute;
+}
+
+.hamburger-menu {
+  min-width: 100px;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 30px;
+}
+
+.hamburger-menu > * {
+  margin-bottom: 1rem;
+}
+
+.topic-list-item {
+  display: flex;
+}
+
+.topic-list {
+  margin-left: 10px;
+}
+
+.topic-arrow {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .nav-section {
+    display: none;
+  }
+  .menu {
+    display: flex;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+}

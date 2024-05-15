@@ -1,15 +1,24 @@
 import { commentActions } from "../comment-slice";
 
 export const fetchCommentsByBlog = async (dispatch: any, id: number) => {
-  const response = await fetch(`http://localhost:8080/comments/${id}`, {
-    method: "GET",
-    headers: <any>{
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("tokenKey"),
-    },
-  });
-  const result = await response.json();
-  dispatch(commentActions.getCommentsByBlog(result));
+  dispatch(commentActions.toggleIsLoading(true));
+  try {
+    const response = await fetch(`http://localhost:8080/comments/${id}`, {
+      method: "GET",
+      headers: <any>{
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("tokenKey"),
+      },
+    });
+    if (!response.ok) throw new Error("Failed to fetch comments");
+    const result = await response.json();
+    dispatch(commentActions.getCommentsByBlog(result));
+    dispatch(commentActions.toggleIsLoading(false));
+    dispatch(commentActions.toggleIsError(false));
+  } catch (error) {
+    dispatch(commentActions.toggleIsLoading(false));
+    dispatch(commentActions.toggleIsError(true));
+  }
 };
 
 export const createOneComment = async (
@@ -21,17 +30,27 @@ export const createOneComment = async (
     username: string;
   }
 ) => {
-  const response = await fetch("http://localhost:8080/comments", {
-    method: "POST",
-    headers: <any>{
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("tokenKey"),
-    },
-    body: JSON.stringify(body),
-  });
-  const result = await response.json();
-  const userComment = { ...result, username: body.username };
-  dispatch(commentActions.addOneComment(userComment));
+  dispatch(commentActions.toggleIsLoading(true));
+  try {
+    const response = await fetch("http://localhost:8080/comments", {
+      method: "POST",
+      headers: <any>{
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("tokenKey"),
+      },
+      body: JSON.stringify(body),
+    });
+
+    const result = await response.json();
+    if (!response.ok) throw new Error("Failed to add a new comment");
+    const userComment = { ...result, username: body.username };
+    dispatch(commentActions.addOneComment(userComment));
+    dispatch(commentActions.toggleIsLoading(false));
+    dispatch(commentActions.toggleIsError(false));
+  } catch (error) {
+    dispatch(commentActions.toggleIsLoading(false));
+    dispatch(commentActions.toggleIsError(true));
+  }
 };
 
 export const deleteOneComment = async (dispatch: any, commentId: number) => {

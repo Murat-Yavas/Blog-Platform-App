@@ -27,12 +27,12 @@ const UserProfile = () => {
 
   return localStorage.getItem("currentUser") !== null ? (
     <div className={`${styles.user}`}>
-      <div className={`mb-4 ${styles["user-credentials"]}`}>
-        <div className="flex">
+      <div className={`mb-4 ${styles["user-section"]}`}>
+        <div className={`${styles["user-info"]}`}>
           <span className={`mr-2 ${styles.avatar} avatar-round`}>
             {user?.username?.charAt(0).toUpperCase()}
           </span>
-          <span className={`flex items-center ml-4 ${styles.username}`}>
+          <span className={`flex items-center ${styles.username}`}>
             {user?.username}
           </span>
         </div>

@@ -11,9 +11,15 @@ export interface Comment {
 
 interface CommentState {
   comments: Comment[];
+  isCommentLoading: boolean;
+  isCommentError: boolean;
 }
 
-const initialState: CommentState = { comments: [] };
+const initialState: CommentState = {
+  comments: [],
+  isCommentLoading: false,
+  isCommentError: false,
+};
 
 const commentSlice = createSlice({
   name: "comment",
@@ -32,6 +38,14 @@ const commentSlice = createSlice({
         (comment) => comment.id !== action.payload
       );
       state.comments = newComments;
+    },
+
+    toggleIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isCommentLoading = action.payload;
+    },
+
+    toggleIsError: (state, action: PayloadAction<boolean>) => {
+      state.isCommentError = action.payload;
     },
   },
 });

@@ -5,13 +5,16 @@ import { useParams } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import AddBlogItem from "../AddBlogItem/AddBlogItem";
 import BlogItem from "../UI/BlogItem/BlogItem";
-import { reverseArray } from "../../helpers/reverseArray";
+import { reverseBlogArray } from "../../helpers/reverseArray";
+import SearchBlogInput from "../SearchBlogInput/SearchBlogInput";
 
 const Topic = () => {
   const { blogs } = useAppSelector((state) => state.blog);
   let blogPosts = [];
 
   const param = useParams();
+
+  console.log(param);
 
   blogPosts = blogs.filter((blog) =>
     blog.topic === param.topicName
@@ -21,11 +24,11 @@ const Topic = () => {
       : null
   );
 
-  const newArray = reverseArray(blogPosts);
+  const newArray = reverseBlogArray(blogPosts);
 
   return (
-    <div className="flex">
-      <div className="flex-none w-64 mr-4">
+    <div className={`${styles.home}`}>
+      <div className={`flex-none w-64 mr-4 ${styles["right-content"]}`}>
         <Sidebar />
         <Footer />
       </div>

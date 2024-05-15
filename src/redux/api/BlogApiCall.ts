@@ -1,32 +1,62 @@
 import { blogActions } from "../blog-slice";
 
 export const fetchAllBlogs = async (dispatch: any) => {
-  const response = await fetch("http://localhost:8080/blogs", {
-    method: "GET",
-    headers: <any>{
-      "Content-Type": "application/json",
-      Authorization: JSON.stringify(localStorage.getItem("tokenKey")),
-    },
-  });
-  const result = await response.json();
-  dispatch(blogActions.getBlogs(result));
+  dispatch(blogActions.toggleIsLoading(true));
+  try {
+    const response = await fetch("http://localhost:8080/blogs", {
+      method: "GET",
+      headers: <any>{
+        "Content-Type": "application/json",
+        Authorization: JSON.stringify(localStorage.getItem("tokenKey")),
+      },
+    });
+
+    if (!response.ok) throw new Error("Failed to fetch blogs");
+    const result = await response.json();
+    dispatch(blogActions.getBlogs(result));
+    dispatch(blogActions.toggleIsLoading(false));
+    dispatch(blogActions.toggleIsError(false));
+  } catch (error) {
+    dispatch(blogActions.toggleIsLoading(false));
+    dispatch(blogActions.toggleIsError(true));
+  }
 };
 
 export const fetchAllBlogsByUser = async (dispatch: any, userId: number) => {
-  const response = await fetch(`http://localhost:8080/blogs/users/${userId}`, {
-    method: "GET",
-    headers: <any>{
-      "Content-Type": "application/json",
-      Authorization: localStorage.getItem("tokenKey"),
-    },
-  });
-  const result = await response.json();
-  dispatch(blogActions.getBlogsByUser(result));
+  dispatch(blogActions.toggleIsLoading(true));
+  try {
+    const response = await fetch(
+      `http://localhost:8080/blogs/users/${userId}`,
+      {
+        method: "GET",
+        headers: <any>{
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("tokenKey"),
+        },
+      }
+    );
+    if (!response.ok) throw new Error("Failed to fetch blogs");
+    const result = await response.json();
+    dispatch(blogActions.getBlogsByUser(result));
+    dispatch(blogActions.toggleIsLoading(false));
+    dispatch(blogActions.toggleIsError(false));
+  } catch (error) {
+    dispatch(blogActions.toggleIsLoading(false));
+    dispatch(blogActions.toggleIsError(true));
+  }
 };
 
 export const createOneBlog = async (
   dispatch: any,
-  body: { title: string; topic: string; content: string; userId: number }
+  body: {
+    title: string;
+    topic: string;
+    content: string;
+    userId: number;
+    comment: null;
+    username: string;
+    createDate: string;
+  }
 ) => {
   const response = await fetch("http://localhost:8080/blogs", {
     method: "POST",
@@ -36,8 +66,20 @@ export const createOneBlog = async (
     },
     body: JSON.stringify(body),
   });
-  const result = await response.json();
-  dispatch(blogActions.addOneBlog(result));
+
+  dispatch(blogActions.toggleIsLoading(true));
+  try {
+    const result = await response.json();
+    if (!response.ok) throw new Error("Failed to add a new blog");
+    const addedBlog = { ...body, id: result.id };
+
+    dispatch(blogActions.addOneBlog(addedBlog));
+    dispatch(blogActions.toggleIsLoading(false));
+    dispatch(blogActions.toggleIsError(false));
+  } catch (error) {
+    dispatch(blogActions.toggleIsLoading(false));
+    dispatch(blogActions.toggleIsError(true));
+  }
 };
 
 export const deleteOneBlog = async (dispatch: any, blogId: number) => {

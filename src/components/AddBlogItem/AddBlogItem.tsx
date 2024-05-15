@@ -15,6 +15,9 @@ const AddBlogItem = () => {
       topic,
       content,
       userId: +localStorage.getItem("currentUser")!,
+      comment: null,
+      username: localStorage.getItem("username")!,
+      createDate: new Date().toISOString().slice(0, 10),
     };
     createOneBlog(dispatch, body);
     setTitle("");

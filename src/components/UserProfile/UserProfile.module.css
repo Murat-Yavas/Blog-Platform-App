@@ -4,10 +4,14 @@
   padding: 5rem;
 }
 
-.user-credentials {
+.user-section {
   padding: 2rem;
   border: 1px solid #74e4ff;
   border-radius: 1rem;
+}
+
+.user-info {
+  display: flex;
 }
 
 .avatar {
@@ -19,6 +23,7 @@
 }
 
 .username {
+  margin-left: 1rem;
   font-size: 2rem;
 }
 
@@ -38,4 +43,23 @@
   justify-content: center;
   margin-top: 5rem;
   font-size: 2rem;
+}
+
+@media screen and (max-width: 640px) {
+  .user-info {
+    flex-direction: column;
+  }
+
+  .avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 2rem;
+    padding: 1rem;
+  }
+
+  .username {
+    margin: 0;
+    font-size: 2rem;
+  }
 }

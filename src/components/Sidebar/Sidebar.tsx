@@ -13,7 +13,7 @@ const Sidebar = () => {
         </div>
         {SidebarData.map((data, index) => (
           <NavLink
-            to={`/topic/${data}`}
+            to={`/topic/${data.topic}`}
             className={`bg-white mb-4 ${styles["sidebar-item"]}`}
             key={index}
           >

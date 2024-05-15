@@ -19,6 +19,8 @@ interface UserInfo {
 interface UserState {
   user: User;
   userCredentials: UserInfo;
+  isUserLoading: boolean;
+  isUserError: boolean;
 }
 
 const initialState: UserState = {
@@ -35,6 +37,8 @@ const initialState: UserState = {
     message: null,
     username: null,
   },
+  isUserLoading: false,
+  isUserError: false,
 };
 
 const userSlice = createSlice({
@@ -47,6 +51,14 @@ const userSlice = createSlice({
 
     saveUser: (state, action: PayloadAction<UserInfo>) => {
       state.userCredentials = action.payload;
+    },
+
+    toggleIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isUserLoading = action.payload;
+    },
+
+    toggleIsError: (state, action: PayloadAction<boolean>) => {
+      state.isUserError = action.payload;
     },
   },
 });
