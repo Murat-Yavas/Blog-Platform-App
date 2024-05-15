@@ -6,15 +6,16 @@ import Spinner from "../Spinner/Spinner";
 
 const HomeTextItem = () => {
   const dispatch = useAppDispatch();
-  const { blogs, isBlogLoading, isBlogError } = useAppSelector(
-    (state) => state.blog
-  );
+  const { blogs, isBlogLoading, isBlogError, searchTerm, searchedBlogs } =
+    useAppSelector((state) => state.blog);
 
   const handleOpenModal = () => {
     dispatch(blogActions.toggleBlogCreateModal(true));
   };
 
-  const newArray = reverseBlogArray(blogs);
+  const newArray = reverseBlogArray(
+    searchTerm.length > 0 ? searchedBlogs : blogs
+  );
 
   if (isBlogLoading) {
     return <Spinner />;

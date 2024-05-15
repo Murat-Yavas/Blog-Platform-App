@@ -32,7 +32,7 @@ const MainNavigation = () => {
 
   return (
     <div className={`${styles.navigation}`}>
-      <div>
+      <div className="block md:hidden ">
         {isMenuOpen ? (
           <ul className={`${styles["hamburger-menu"]}`}>
             <div>
@@ -49,7 +49,7 @@ const MainNavigation = () => {
                 <NavLink to="/auth">Login/Signup</NavLink>
               ) : (
                 <>
-                  <p className="mr-4" onClick={() => handleLogout()}>
+                  <p className="mr-4 mb-4" onClick={() => handleLogout()}>
                     Logout
                   </p>
                   <NavLink to={`/users/${localStorage.getItem("currentUser")}`}>
@@ -124,7 +124,7 @@ const MainNavigation = () => {
         )}
       </div>
 
-      <p className={`${styles["menu"]}`}>
+      <p className={`${styles["menu"]} ml-4`}>
         <GiHamburgerMenu
           onClick={handleOpenMenu}
           className={`${styles["menu-item"]}`}

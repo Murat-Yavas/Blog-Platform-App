@@ -10,8 +10,6 @@ const AddBlogItem = () => {
   const [topic, setTopic] = useState("");
   const [content, setContent] = useState("");
 
-  console.log(typeof topic);
-
   const handleAddBlog = () => {
     if (
       title === "" ||

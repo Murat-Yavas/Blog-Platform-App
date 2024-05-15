@@ -63,7 +63,7 @@ const blogSlice = createSlice({
 
     searchBlogs: (state, action: PayloadAction<Blog[]>) => {
       state.searchedBlogs = action.payload;
-      state.blogs = action.payload;
+      // state.blogs = action.payload;
     },
 
     toggleIsLoading: (state, action: PayloadAction<boolean>) => {
