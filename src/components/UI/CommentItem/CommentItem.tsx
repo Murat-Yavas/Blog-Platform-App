@@ -26,6 +26,7 @@ const CommentItem = ({ blogId, userId }: CommentProps) => {
   }, [dispatch]);
 
   const handleDeleteComment = (commentId: number) => {
+    alert("This comment will be deleted. Are you sure?");
     deleteOneComment(dispatch, commentId);
   };
 

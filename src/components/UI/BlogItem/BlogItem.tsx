@@ -24,6 +24,7 @@ const BlogItem = ({ blog }: BlogProps) => {
   };
 
   const handleDeleteBlog = (blogId: number) => {
+    alert("This blog will be deleted. Are you sure?");
     deleteOneBlog(dispatch, blogId);
   };
 
