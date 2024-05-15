@@ -26,6 +26,7 @@ export const createOneUser = async (
   userInfo: { username: string; password: string },
   path: string
 ) => {
+  dispatch(userActions.toggleIsLoading(true));
   try {
     const response = await fetch(`http://localhost:8080/auth/${path}`, {
       method: "POST",
@@ -34,13 +35,26 @@ export const createOneUser = async (
       },
       body: JSON.stringify(userInfo),
     });
-    if (!response.ok) throw new Error("Failed to create a new user");
     const result = await response.json();
+    if (result.message !== null) {
+      dispatch(userActions.toggleIsError(true));
+      dispatch(userActions.saveUser(result));
+    }
+
+    if (!response.ok) {
+      dispatch(userActions.toggleIsError(true));
+      throw new Error("Failed to create a new user");
+    }
     const resultItem = [
       localStorage.setItem("tokenKey", result.accessToken),
       localStorage.setItem("currentUser", result.userId),
       localStorage.setItem("username", result.username),
     ];
     dispatch(userActions.saveUser(result));
-  } catch (error) {}
+    dispatch(userActions.toggleIsLoading(false));
+    dispatch(userActions.toggleIsError(false));
+  } catch (error) {
+    dispatch(userActions.toggleIsLoading(false));
+    dispatch(userActions.toggleIsError(true));
+  }
 };

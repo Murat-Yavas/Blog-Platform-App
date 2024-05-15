@@ -6,15 +6,12 @@ import Footer from "../Footer/Footer";
 import AddBlogItem from "../AddBlogItem/AddBlogItem";
 import BlogItem from "../UI/BlogItem/BlogItem";
 import { reverseBlogArray } from "../../helpers/reverseArray";
-import SearchBlogInput from "../SearchBlogInput/SearchBlogInput";
 
 const Topic = () => {
   const { blogs } = useAppSelector((state) => state.blog);
   let blogPosts = [];
 
   const param = useParams();
-
-  console.log(param);
 
   blogPosts = blogs.filter((blog) =>
     blog.topic === param.topicName

@@ -1,25 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createOneUser } from "../../redux/api/UserApiCall";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
+  const { isUserLoading, isUserError, userCredentials } = useAppSelector(
+    (state) => state.user
+  );
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showAuthError, setShowAuthError] = useState("");
+  const [showInputMessage, setShowInputMessage] = useState("");
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
   const handleAuth = (path: string) => {
-    const userInfo = { username, password };
-    createOneUser(dispatch, userInfo, path);
+    if (username === "" || password === "") {
+      setShowInputMessage("Inputs cannot be left blank!");
+    } else {
+      setShowInputMessage("");
+      const userInfo = { username, password };
+      createOneUser(dispatch, userInfo, path);
 
-    if (path === "login") {
-      setUsername("");
-      setPassword("");
-      navigate("/");
+      if (path === "login") {
+        setUsername("");
+        setPassword("");
+        navigate("/");
+      }
     }
   };
+
+  useEffect(() => {
+    if (userCredentials.message === "Username already in use." && isUserError) {
+      setShowAuthError(`${userCredentials.message}`);
+    } else if (
+      userCredentials.message === "User successfully registered" &&
+      !isUserError
+    )
+      setShowAuthError("Successfully registered");
+  }, [userCredentials, isUserError]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,6 +51,14 @@ const Auth = () => {
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h2>
+        <h1
+          className={`text-center text-lg ${
+            isUserError ? "text-red-600" : "text-green-500"
+          }`}
+        >
+          {showAuthError}
+        </h1>
+        <h1 className="text-center text-lg text-red-600">{showInputMessage}</h1>
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">

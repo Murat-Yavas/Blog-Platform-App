@@ -111,7 +111,7 @@ const MainNavigation = () => {
 
       <div className={`${styles["nav-section"]}`}>
         {localStorage.getItem("currentUser") === null ? (
-          <NavLink to="/auth">Login/Signup</NavLink>
+          <NavLink to="/auth">Login/Sign in</NavLink>
         ) : (
           <>
             <p className="mr-4" onClick={() => handleLogout()}>
