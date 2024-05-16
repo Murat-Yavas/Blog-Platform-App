@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import { fetchOneUser } from "../../redux/api/UserApiCall";
 import BlogItem from "../UI/BlogItem/BlogItem";
 import { fetchAllBlogsByUser } from "../../redux/api/BlogApiCall";
+import { FaUserEdit } from "react-icons/fa";
+import { userActions } from "../../redux/user-slice";
+import UpdateUserModal from "../UpdateUserModal/UpdateUserModal";
 
 const UserProfile = () => {
   const [isOpenUserBlogs, setIsOpenUserBlogs] = useState(false);
-  const { user } = useAppSelector((state) => state.user);
+  const { user, isUpdateModalOpen } = useAppSelector((state) => state.user);
   const { userBlogs } = useAppSelector((state) => state.blog);
   const dispatch = useAppDispatch();
   const param = useParams();
@@ -23,6 +26,10 @@ const UserProfile = () => {
 
   const handleUserBlogs = () => {
     setIsOpenUserBlogs(!isOpenUserBlogs);
+  };
+
+  const handleOpenModal = () => {
+    dispatch(userActions.toggleUpdateModal(true));
   };
 
   return localStorage.getItem("currentUser") !== null ? (
@@ -40,20 +47,30 @@ const UserProfile = () => {
           <p>Blogs: {user.blog.length}</p>
           <p>Comments: {user.comment.length}</p>
         </div>
+        <span>
+          <FaUserEdit
+            onClick={handleOpenModal}
+            className={`${styles["edit-user"]}`}
+          />
+        </span>
       </div>
+
+      {isUpdateModalOpen ? <UpdateUserModal /> : ""}
 
       <div className={`${styles["show-blog-btn"]}`}>
         <button onClick={() => handleUserBlogs()}>
           {!isOpenUserBlogs ? "Show " : "Hide "} Blogs
         </button>
       </div>
-      {isOpenUserBlogs ? (
-        <div className={`mb-4 ${styles["user-blogs"]}`}>
-          {userBlogs.map((blog) => (
-            <BlogItem blog={blog} key={blog.id} />
-          ))}
-        </div>
-      ) : null}
+      <div className={`mb-4 ${styles["user-blogs"]}`}>
+        {isOpenUserBlogs ? (
+          <div>
+            {userBlogs.map((blog) => (
+              <BlogItem blog={blog} key={blog.id} />
+            ))}
+          </div>
+        ) : null}
+      </div>
     </div>
   ) : (
     <p className={`${styles["profile-message"]}`}>

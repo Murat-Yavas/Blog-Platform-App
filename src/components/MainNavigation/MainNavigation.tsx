@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./MainNavigation.module.css";
 import { FaHome } from "react-icons/fa";
 import { RiArticleFill } from "react-icons/ri";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { blogActions } from "../../redux/blog-slice";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useState } from "react";
@@ -14,6 +14,7 @@ const MainNavigation = () => {
   const dispatch = useAppDispatch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpenTopicList, setIsOpenTopicList] = useState(false);
+  const { user } = useAppSelector((state) => state.user);
 
   const handleBlogModal = () => {
     dispatch(blogActions.toggleBlogCreateModal(true));
@@ -45,7 +46,7 @@ const MainNavigation = () => {
             </div>
 
             <div>
-              {localStorage.getItem("currentUser") === null ? (
+              {user.id === null ? (
                 <NavLink to="/auth">Login/Signup</NavLink>
               ) : (
                 <>

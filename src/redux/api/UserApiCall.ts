@@ -58,3 +58,25 @@ export const createOneUser = async (
     dispatch(userActions.toggleIsError(true));
   }
 };
+
+export const updateOneUser = async (
+  dispatch: any,
+  userId: number,
+  body: { username: string; password: string }
+) => {
+  try {
+    const response = await fetch(`http://localhost:8080/users/${userId}`, {
+      method: "PUT",
+      headers: <any>{
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("tokenKey"),
+      },
+      body: JSON.stringify(body),
+    });
+
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -49,7 +49,7 @@ const blogSlice = createSlice({
     },
 
     addOneBlog: (state, action: PayloadAction<Blog>) => {
-      state.blogs.push(action.payload);
+      state.blogs.unshift(action.payload);
     },
 
     removeOneBlog: (state, action: PayloadAction<number>) => {

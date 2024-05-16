@@ -1,13 +1,14 @@
 .user {
   margin: 3rem auto;
-  width: 80%;
-  padding: 5rem;
+  max-width: 692px;
+  padding: 3rem;
 }
 
 .user-section {
   padding: 2rem;
   border: 1px solid #74e4ff;
   border-radius: 1rem;
+  position: relative;
 }
 
 .user-info {
@@ -27,6 +28,19 @@
   font-size: 2rem;
 }
 
+.edit-user {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+}
+
+.edit-user:hover {
+  color: #74e4ff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 .show-blog-btn {
   display: flex;
   justify-content: end;
@@ -36,6 +50,9 @@
 .show-blog-btn button:hover {
   color: #74e4ff;
   transition: 0.2s;
+}
+
+.user-blogs {
 }
 
 .profile-message {

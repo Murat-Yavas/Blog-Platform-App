@@ -42,8 +42,13 @@ export const createOneComment = async (
     });
 
     const result = await response.json();
+    console.log(result);
     if (!response.ok) throw new Error("Failed to add a new comment");
-    const userComment = { ...result, username: body.username };
+    const userComment = {
+      ...result,
+      username: body.username,
+      userId: body.userId,
+    };
     dispatch(commentActions.addOneComment(userComment));
     dispatch(commentActions.toggleIsLoading(false));
     dispatch(commentActions.toggleIsError(false));

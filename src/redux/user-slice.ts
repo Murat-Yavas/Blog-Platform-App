@@ -21,6 +21,7 @@ interface UserState {
   userCredentials: UserInfo;
   isUserLoading: boolean;
   isUserError: boolean;
+  isUpdateModalOpen: boolean;
 }
 
 const initialState: UserState = {
@@ -39,6 +40,7 @@ const initialState: UserState = {
   },
   isUserLoading: false,
   isUserError: false,
+  isUpdateModalOpen: false,
 };
 
 const userSlice = createSlice({
@@ -59,6 +61,10 @@ const userSlice = createSlice({
 
     toggleIsError: (state, action: PayloadAction<boolean>) => {
       state.isUserError = action.payload;
+    },
+
+    toggleUpdateModal: (state, action: PayloadAction<boolean>) => {
+      state.isUpdateModalOpen = action.payload;
     },
   },
 });

@@ -63,10 +63,10 @@ const CommentItem = ({ blogId, userId }: CommentProps) => {
               </div>
 
               {+localStorage.getItem("currentUser")! === userId ||
-              +localStorage.getItem("currentUser")! === comment.userId ? (
+              +localStorage.getItem("currentUser")! === comment?.userId ? (
                 <ImCross
                   className={`bg-white text-custom-blue ${styles["delete-icon"]}`}
-                  onClick={() => handleDeleteComment(comment.id)}
+                  onClick={() => handleDeleteComment(comment?.id)}
                 />
               ) : null}
             </div>
