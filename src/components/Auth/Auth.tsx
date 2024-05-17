@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate } from "react-router-dom";
 
 const Auth = () => {
-  const { isUserLoading, isUserError, userCredentials } = useAppSelector(
+  const { isUserError, userCredentials } = useAppSelector(
     (state) => state.user
   );
   const [username, setUsername] = useState("");

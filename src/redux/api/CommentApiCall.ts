@@ -42,7 +42,6 @@ export const createOneComment = async (
     });
 
     const result = await response.json();
-    console.log(result);
     if (!response.ok) throw new Error("Failed to add a new comment");
     const userComment = {
       ...result,

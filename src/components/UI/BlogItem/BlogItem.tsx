@@ -24,8 +24,9 @@ const BlogItem = ({ blog }: BlogProps) => {
   };
 
   const handleDeleteBlog = (blogId: number) => {
-    alert("This blog will be deleted. Are you sure?");
-    deleteOneBlog(dispatch, blogId);
+    if (confirm("This blog will be deleted. Are you sure?")) {
+      deleteOneBlog(dispatch, blogId);
+    }
   };
 
   return (
@@ -83,7 +84,6 @@ const BlogItem = ({ blog }: BlogProps) => {
           onClick={() => setIsCommentOpen(!isCommentOpen)}
         />
       </div>
-
       {isCommentOpen ? (
         <>
           <CommentInput
@@ -92,7 +92,11 @@ const BlogItem = ({ blog }: BlogProps) => {
             username={localStorage.getItem("username")!}
           />
 
-          <CommentItem key={blog.title} blogId={blog.id} userId={blog.userId} />
+          <CommentItem
+            key={blog.title}
+            userId={blog.userId}
+            comment={blog.comment!}
+          />
         </>
       ) : (
         ""

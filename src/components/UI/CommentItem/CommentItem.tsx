@@ -1,36 +1,31 @@
 import { NavLink } from "react-router-dom";
 import styles from "./CommentItem.module.css";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {
-  deleteOneComment,
-  fetchCommentsByBlog,
-} from "../../../redux/api/CommentApiCall";
-import { useEffect } from "react";
+import { deleteOneComment } from "../../../redux/api/CommentApiCall";
+
 import { ImCross } from "react-icons/im";
 import Spinner from "../../Spinner/Spinner";
 import { reverseCommentArray } from "../../../helpers/reverseArray";
+import { Comment } from "../../../redux/comment-slice";
 
 export interface CommentProps {
-  blogId: number;
   userId: number;
+  comment: Comment[];
 }
 
-const CommentItem = ({ blogId, userId }: CommentProps) => {
+const CommentItem = ({ userId, comment }: CommentProps) => {
   const dispatch = useAppDispatch();
-  const { comments, isCommentLoading, isCommentError } = useAppSelector(
+  const { isCommentLoading, isCommentError } = useAppSelector(
     (state) => state.comment
   );
 
-  useEffect(() => {
-    fetchCommentsByBlog(dispatch, blogId);
-  }, [dispatch]);
-
   const handleDeleteComment = (commentId: number) => {
-    alert("This comment will be deleted. Are you sure?");
-    deleteOneComment(dispatch, commentId);
+    if (confirm("This comment will be deleted. Are you sure?")) {
+      deleteOneComment(dispatch, commentId);
+    }
   };
 
-  const reversedArray = reverseCommentArray(comments);
+  const reversedArray = reverseCommentArray(comment);
 
   if (isCommentLoading) {
     return <Spinner />;

@@ -11,8 +11,6 @@ const UpdateUserModal = () => {
 
   const modalRef = useRef<any>(null);
 
-  console.log(user);
-
   ListenOutSideClick(modalRef);
 
   function ListenOutSideClick(modalRef: any) {

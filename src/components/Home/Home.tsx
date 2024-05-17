@@ -9,13 +9,10 @@ import AddBlogItem from "../AddBlogItem/AddBlogItem";
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  // const { blogs, searchTerm } = useAppSelector((state) => state.blog);
 
   useEffect(() => {
     fetchAllBlogs(dispatch);
   }, []);
-
-  // console.log(blogs);
 
   return (
     <div className={`${styles.home}`}>

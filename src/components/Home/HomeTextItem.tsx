@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { blogActions } from "../../redux/blog-slice";
 import BlogItem from "../UI/BlogItem/BlogItem";
-// import { reverseBlogArray } from "../../helpers/reverseArray";
 import Spinner from "../Spinner/Spinner";
 
 const HomeTextItem = () => {
@@ -13,14 +12,7 @@ const HomeTextItem = () => {
     dispatch(blogActions.toggleBlogCreateModal(true));
   };
 
-  // const newArray = reverseBlogArray(
-  //   searchTerm.length > 0 ? searchedBlogs : blogs
-  // );
-
   const newArray = searchTerm.length > 0 ? searchedBlogs : blogs;
-
-  // console.log(blogs);
-  // console.log(newArray);
 
   if (isBlogLoading) {
     return <Spinner />;
