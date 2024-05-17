@@ -15,6 +15,7 @@ const MainNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isOpenTopicList, setIsOpenTopicList] = useState(false);
   const { user } = useAppSelector((state) => state.user);
+  console.log(user);
 
   const handleBlogModal = () => {
     dispatch(blogActions.toggleBlogCreateModal(true));

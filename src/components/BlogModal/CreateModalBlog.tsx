@@ -35,7 +35,7 @@ const CreateModalBlog = () => {
   const handlePost = () => {
     if (
       title === "" ||
-      topic === "Select category" ||
+      topic === "Select input" ||
       topic === "" ||
       content === ""
     ) {
@@ -112,7 +112,7 @@ const CreateModalBlog = () => {
                       className="bg-gray-50 border border-custom-blue text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
                       onChange={(e) => setTopic(e.target.value)}
                     >
-                      <option defaultValue="">Select category</option>
+                      <option defaultValue="">Select input</option>
                       <option value="techonology">Technology</option>
                       <option value="nature">Nature</option>
                       <option value="engineering">Engineering</option>

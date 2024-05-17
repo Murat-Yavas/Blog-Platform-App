@@ -13,7 +13,7 @@ const AddBlogItem = () => {
   const handleAddBlog = () => {
     if (
       title === "" ||
-      topic === "Select category" ||
+      topic === "Select input" ||
       topic === "" ||
       content === ""
     ) {
@@ -75,7 +75,7 @@ const AddBlogItem = () => {
               onChange={(e) => setTopic(e.target.value)}
               value={topic}
             >
-              <option defaultValue="">Select category</option>
+              <option defaultValue="">Select input</option>
               <option value="techonology">Technology</option>
               <option value="nature">Nature</option>
               <option value="engineering">Engineering</option>

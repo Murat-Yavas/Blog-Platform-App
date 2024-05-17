@@ -34,7 +34,7 @@ const CommentItem = ({ userId, comment }: CommentProps) => {
   } else
     return (
       <div className="bg-white">
-        {reversedArray.map((comment) => (
+        {reversedArray?.map((comment) => (
           <div
             key={comment.id}
             className={`bg-white ${styles["comment-item"]}`}

@@ -10,7 +10,7 @@ export const reverseBlogArray = (array: Blog[]) => {
 };
 
 export const reverseCommentArray = (array: Comment[]) => {
-  const reversedCommentsArray = array.map(
+  const reversedCommentsArray = array?.map(
     (comment, index) => array[array.length - 1 - index]
   );
 

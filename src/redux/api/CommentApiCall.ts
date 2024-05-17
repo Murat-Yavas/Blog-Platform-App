@@ -1,3 +1,4 @@
+import { blogActions } from "../blog-slice";
 import { commentActions } from "../comment-slice";
 
 export const fetchCommentsByBlog = async (dispatch: any, id: number) => {
@@ -48,6 +49,7 @@ export const createOneComment = async (
       username: body.username,
       userId: body.userId,
     };
+    dispatch(blogActions.updateBlogAfterComment(userComment));
     dispatch(commentActions.addOneComment(userComment));
     dispatch(commentActions.toggleIsLoading(false));
     dispatch(commentActions.toggleIsError(false));
