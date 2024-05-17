@@ -1,3 +1,25 @@
+A full stack blog platform app created with React and tailwind. Have a look at [server side codes.](https://github.com/Murat-Yavas/Blog-Platform-App---Server)
+
+# Technologies
+
+- [React.js](https://react.dev/)
+- [Redux](https://redux.js.org/)
+- [Tailwind](https://tailwindcss.com/)
+
+# Install
+
+To run this project, follow below!
+
+> $ npm install
+>
+> $ npm run dev
+>
+> ## Preview
+
+![preview](src/assets/1.PNG)
+![preview](src/assets/2.PNG)
+![preview](src/assets/3.PNG)
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -17,12 +39,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
